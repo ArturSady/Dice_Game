@@ -4,11 +4,14 @@ import java.util.Scanner;
 
 public class ServiceDiceGame {
     Random random = new Random();
-    LinkedList<Integer> linkedList = new LinkedList<>();
+    LinkedList<Integer> pointsPlayer1 = new LinkedList<>();
+    LinkedList<Integer> pointsPlayer2 = new LinkedList<>();
     Scanner scanner = new Scanner(System.in);
 
-    private int max = random.nextInt(6) + 1;
-    private int max2 = random.nextInt(6) + 1;
+    private int dice1Player1;// = random.nextInt(6) + 1;
+    private int dice2Player1; // = random.nextInt(6) + 1;
+    private int dice1Player2; // = random.nextInt(6) + 1;
+    private int dice2Player2;// = random.nextInt(6) + 1;
 
     public void viewRules() {
         System.out.println("""
@@ -29,52 +32,108 @@ public class ServiceDiceGame {
 
     public void whoStart() {
         System.out.println("Losowanie Gracza który zaczyna.");
+        dice1Player1 = random.nextInt(6) + 1;
+        dice1Player2 = random.nextInt(6) + 1;
         //  int randomMax1 = randomUser1;
-        System.out.println("Rzut kostki przez 1 Gracza:" + max);
+        System.out.println("Rzut kostki przez 1 Gracza:" + dice1Player1);
 
         //  int randomMax2 = randomUser2;
-        System.out.println("Rzut kostki przez 2 Gracza:" + max2);
-        if (max > max2) {
+        System.out.println("Rzut kostki przez 2 Gracza:" + dice1Player2);
+        if (dice1Player1 > dice1Player2) {
             System.out.println("Gracz 1 zaczyna!");
-            max = random.nextInt(6) + 1;
-            max2 = random.nextInt(6) + 1;
+            // dice1Player1 = random.nextInt(6) + 1;
+            // dice1Player2 = random.nextInt(6) + 1;
             player1();
         }
-        if (max2 > max) {
+        if (dice1Player2 > dice1Player1) {
             System.out.println("Gracz 2 zaczyna!");
-            max2 = random.nextInt(6) + 1;
-            max = random.nextInt(6) + 1;
+            // dice1Player2 = random.nextInt(6) + 1;
+            // dice1Player1 = random.nextInt(6) + 1;
+            player2();
 
         }
-        if (max == max2) {
+        if (dice1Player1 == dice1Player2) {
             System.out.println("Remis!");
-            max = random.nextInt(6) + 1;
-            max2 = random.nextInt(6) + 1;
+            dice1Player1 = random.nextInt(6) + 1;
+            dice1Player2 = random.nextInt(6) + 1;
             whoStart();
         }
     }
 
     public void player1() {
         System.out.println("""
+                Gracz 1:
                 1.Rzucaj kostką
                 2.Zakończ turę""");
         int play1Choice = scanner.nextInt();
-        switch (play1Choice){
+        switch (play1Choice) {
             case 1:
-                max = random.nextInt(6) + 1;
-                System.out.println("Wyrzuciłeś: " + max);
-                linkedList.add(max);
-                int sum = 0;
-                for (int i = 0; i < linkedList.size() ; i++) {
-                    sum += linkedList.get(i);
+                dice2Player1 = random.nextInt(6) + 1;
+                dice1Player1 = random.nextInt(6) + 1;
+                System.out.println("Wyrzuciłeś kostka 1: " + dice1Player1);
+                System.out.println("Wyrzuciłeś kostka 2: " + dice2Player1);
+                if (dice1Player1 != 1 && dice2Player1 != 1) {
 
+                    pointsPlayer1.add(dice1Player1);
+                    pointsPlayer1.add(dice2Player1);
+                    int sum = 0;
+                    for (int i = 0; i < pointsPlayer1.size(); i++) {
+                        sum += pointsPlayer1.get(i);
+
+                    }
+                    System.out.println("Twoja suma punktów: " + sum);
+                    if (sum >= 100) {
+                        System.out.println("Wygrałeś!");
+                        System.exit(0);
+                    } else {
+                        player1();
+                    }
+                } else {
+                    pointsPlayer1.clear();
+                    player2();
                 }
-                System.out.println("Twoja suma punktów: " + sum);
-                player1();
             case 2:
-                break;
+                player2();
+                //   break;
         }
 
     }
 
+    public void player2() {
+        System.out.println("""
+                Gracz 2:
+                1.Rzucaj kostką
+                2.Zakończ turę""");
+        int play1Choice = scanner.nextInt();
+        switch (play1Choice) {
+            case 1:
+                dice2Player2 = random.nextInt(6) + 1;
+                dice1Player2 = random.nextInt(6) + 1;
+                System.out.println("Wyrzuciłeś kostka 1: " + dice1Player2);
+                System.out.println("Wyrzuciłeś kostka 2: " + dice2Player2);
+                if (dice1Player2 != 1 && dice2Player2 != 1) {
+
+                    pointsPlayer2.add(dice1Player2);
+                    pointsPlayer2.add(dice2Player2);
+                    int sum = 0;
+                    for (int i = 0; i < pointsPlayer2.size(); i++) {
+                        sum += pointsPlayer2.get(i);
+
+                    }
+                    System.out.println("Twoja suma punktów: " + sum);
+                    if (sum >= 100) {
+                        System.out.println("Wygrałeś!");
+                        System.exit(0);
+                    } else {
+                        player2();
+                    }
+                }else {
+                    pointsPlayer2.clear();
+                    player1();
+                }
+            case 2:
+                player1();
+        }
+
+    }
 }
