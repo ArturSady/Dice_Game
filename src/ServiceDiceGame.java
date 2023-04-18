@@ -15,18 +15,17 @@ public class ServiceDiceGame {
 
     public void viewRules() {
         System.out.println("""
-                Każdy gracz rzuca kostką (przycisk RZUĆ KOŚCIĄ),
-                zdobywając punkty za każdy ruch, dopóki jedna 
+                Na początku gracze rzucają 1 kostką. Gracz który wyrzuci
+                więcej oczek zaczyna.
+                Każdy gracz rzuca 2 kostkami ,
+                zdobywając punkty równowartości sumy oczek z 2 kostek za każdy ruch, dopóki jedna 
                 z kostek nie wyrzuci 1 lub gracz zdecyduje się 
-                zatrzymać (przycisk WTRZYMAJ).                                         
+                zatrzymać.                                         
                 Jeśli wypadnie jedynka, gracz nie
-                otrzymuje nic za tę rundę. Jeśli gracz zdecyduje
-                się zatrzymać przed wyrzuceniem 1, wszystkie
+                otrzymuje nic za tę rundę i traci dotychczasowe punkty.
+                Jeśli gracz zdecyduje się zatrzymać przed wyrzuceniem 1, wszystkie               
                 punkty zdobyte w rundzie są dodawane do jego całkowitego wyniku.                                          
-                Następnie tura przechodzi na innego gracza.                                           
-                Jeśli gracz wyrzuci 6 na jednej z kostek dwa razy z rzędu,
-                traci wszystkie zapisane punkty i wszystkie punkty rundy.                                           
-                Zwycięzcą jest ten, kto pierwszy zbierze 100 punktów.
+                Następnie tura przechodzi na innego gracza.                                                           
                 """);
     }
 
