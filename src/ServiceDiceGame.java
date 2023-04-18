@@ -1,7 +1,15 @@
+import java.util.LinkedList;
+import java.util.Random;
+import java.util.Scanner;
+
 public class ServiceDiceGame {
-    private int max = 6;
-    private int randomUser1 = (int) Math.floor(Math.random() * max);
-    private int randomUser2 = (int) Math.floor(Math.random() * max);
+    Random random = new Random();
+    LinkedList<Integer> linkedList = new LinkedList<>();
+    Scanner scanner = new Scanner(System.in);
+
+    private int max = random.nextInt(6) + 1;
+    private int max2 = random.nextInt(6) + 1;
+
     public void viewRules() {
         System.out.println("""
                 Każdy gracz rzuca kostką (przycisk RZUĆ KOŚCIĄ),
@@ -18,17 +26,55 @@ public class ServiceDiceGame {
                 Zwycięzcą jest ten, kto pierwszy zbierze 100 punktów.
                 """);
     }
-    public void whoStart(){
+
+    public void whoStart() {
         System.out.println("Losowanie Gracza który zaczyna.");
-        int randomMax1 = randomUser1;
-        System.out.println("Rzut kostki przez 1 Gracza:" + randomMax1);
-        int randomMax2 = randomUser2;
-        System.out.println("Rzut kostki przez 2 Gracza:" + randomMax2);
-        if(randomMax1 > randomMax2){
+        //  int randomMax1 = randomUser1;
+        System.out.println("Rzut kostki przez 1 Gracza:" + max);
+
+        //  int randomMax2 = randomUser2;
+        System.out.println("Rzut kostki przez 2 Gracza:" + max2);
+        if (max > max2) {
             System.out.println("Gracz 1 zaczyna!");
-        }if(randomMax2 > randomMax1){
-            System.out.println("Gracz 2 zaczyna!");
+            max = random.nextInt(6) + 1;
+            max2 = random.nextInt(6) + 1;
+            player1();
         }
+        if (max2 > max) {
+            System.out.println("Gracz 2 zaczyna!");
+            max2 = random.nextInt(6) + 1;
+            max = random.nextInt(6) + 1;
+
+        }
+        if (max == max2) {
+            System.out.println("Remis!");
+            max = random.nextInt(6) + 1;
+            max2 = random.nextInt(6) + 1;
+            whoStart();
+        }
+    }
+
+    public void player1() {
+        System.out.println("""
+                1.Rzucaj kostką
+                2.Zakończ turę""");
+        int play1Choice = scanner.nextInt();
+        switch (play1Choice){
+            case 1:
+                max = random.nextInt(6) + 1;
+                System.out.println("Wyrzuciłeś: " + max);
+                linkedList.add(max);
+                int sum = 0;
+                for (int i = 0; i < linkedList.size() ; i++) {
+                    sum += linkedList.get(i);
+
+                }
+                System.out.println("Twoja suma punktów: " + sum);
+                player1();
+            case 2:
+                break;
+        }
+
     }
 
 }
