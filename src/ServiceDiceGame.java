@@ -6,8 +6,8 @@ public class ServiceDiceGame {
     Random random = new Random();
     LinkedList<Integer> pointsPlayer1 = new LinkedList<>();
     LinkedList<Integer> pointsPlayer2 = new LinkedList<>();
-    LinkedList<Integer> pointsPlayer1OnTour = new LinkedList<>();
-    LinkedList<Integer> pointsPlayer2OnTour = new LinkedList<>();
+    LinkedList<Integer> pointsPlayer1_OnRound = new LinkedList<>();
+    LinkedList<Integer> pointsPlayer2_OnRound = new LinkedList<>();
     Scanner scanner = new Scanner(System.in);
 
     private int dice1Player1;// = random.nextInt(6) + 1;
@@ -77,11 +77,11 @@ public class ServiceDiceGame {
                 System.out.println("Wyrzuciłeś kostka 2: " + dice2Player1);
                 if (dice1Player1 != 1 && dice2Player1 != 1) {
 
-                    pointsPlayer1OnTour.add(dice1Player1);
-                    pointsPlayer1OnTour.add(dice2Player1);
+                    pointsPlayer1_OnRound.add(dice1Player1);
+                    pointsPlayer1_OnRound.add(dice2Player1);
                     int sum = 0;
-                    for (int i = 0; i < pointsPlayer1OnTour.size(); i++) {
-                        sum += pointsPlayer1OnTour.get(i);
+                    for (int i = 0; i < pointsPlayer1_OnRound.size(); i++) {
+                        sum += pointsPlayer1_OnRound.get(i);
 
                     }
                     System.out.println("Twoja suma punktów w tej turze: " + sum);
@@ -93,11 +93,11 @@ public class ServiceDiceGame {
 //                        player1();
 //                    }
                 } else {
-                    pointsPlayer1OnTour.clear();
+                    pointsPlayer1_OnRound.clear();
                     player2();
                 }
             case 2:
-                pointsPlayer1.addAll(pointsPlayer1OnTour);
+                pointsPlayer1.addAll(pointsPlayer1_OnRound);
                 int sum2 = 0;
                 for (int i = 0; i < pointsPlayer1.size(); i++) {
                     sum2 += pointsPlayer1.get(i);
@@ -106,7 +106,7 @@ public class ServiceDiceGame {
                     System.out.println("Gracz nr.1 Wygrywa!!!");
                     System.exit(0);
         }
-                pointsPlayer1OnTour.clear();
+                pointsPlayer1_OnRound.clear();
                 player2();
                 //   break;
             case 3:
@@ -135,22 +135,22 @@ public class ServiceDiceGame {
                 System.out.println("Wyrzuciłeś kostka 2: " + dice2Player2);
                 if (dice1Player2 != 1 && dice2Player2 != 1) {
 
-                    pointsPlayer2OnTour.add(dice1Player2);
-                    pointsPlayer2OnTour.add(dice2Player2);
+                    pointsPlayer2_OnRound.add(dice1Player2);
+                    pointsPlayer2_OnRound.add(dice2Player2);
                     int sum = 0;
-                    for (int i = 0; i < pointsPlayer2OnTour.size(); i++) {
-                        sum += pointsPlayer2OnTour.get(i);
+                    for (int i = 0; i < pointsPlayer2_OnRound.size(); i++) {
+                        sum += pointsPlayer2_OnRound.get(i);
 
                     }
                     System.out.println("Twoja suma punktów w turze: " + sum);
                     player2();
 
                 }else {
-                    pointsPlayer2OnTour.clear();
+                    pointsPlayer2_OnRound.clear();
                     player1();
                 }
             case 2:
-                pointsPlayer2.addAll(pointsPlayer2OnTour);
+                pointsPlayer2.addAll(pointsPlayer2_OnRound);
                 int sum2 = 0;
                 for (int i = 0; i < pointsPlayer2.size(); i++) {
                     sum2 += pointsPlayer2.get(i);
@@ -159,7 +159,7 @@ public class ServiceDiceGame {
                     System.out.println("Gracz nr.2 Wygrywa!!!");
                     System.exit(0);
                 }
-                pointsPlayer2OnTour.clear();
+                pointsPlayer2_OnRound.clear();
                 player1();
             case 3:
                 int sum1 = 0;
