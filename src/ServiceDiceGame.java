@@ -122,9 +122,9 @@ public class ServiceDiceGame {
     public void player2() {
         System.out.println("""
                 Gracz 2:
-                1.Rzucaj kostką
-                2.Zakończ turę
-                3.Sprawdź swoje punkty""");
+                1.Rzucaj kostką.
+                2.Zakończ turę.
+                3.Sprawdź swoje punkty.""");
         int play1Choice = scanner.nextInt();
         switch (play1Choice) {
             case 1:
