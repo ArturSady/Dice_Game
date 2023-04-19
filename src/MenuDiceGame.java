@@ -7,9 +7,9 @@ public class MenuDiceGame {
     public void startGame(){
         System.out.println("""
                            Wybierz opcję:
-                           1.Wyświetl zasady gry
-                           2.Graj
-                           3.Wyjdź""");
+                           1.Wyświetl zasady gry.
+                           2.Graj.
+                           3.Wyjdź.""");
         int choiceNum = scanner.nextInt();
         switch (choiceNum){
             case 1:
